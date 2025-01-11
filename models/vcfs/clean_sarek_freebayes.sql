@@ -55,7 +55,7 @@ copy (
                 , position as start_pos
                 , "sample"
                 , position + length(reference) - 1 as end_pos
-                , cast(quality as decimal(5, 1)) as qual
+                , cast(quality as decimal(6, 1)) as qual
                 , array_concat([reference], alternate) as alleles
 
                 -- info fields
