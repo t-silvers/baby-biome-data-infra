@@ -6,7 +6,7 @@ models:
     fastqs:
         staging: fastqs/stg_fastqs.sql
         clean:
-            default: fastqs/pp_fastqs_pe.sql
+            # default: fastqs/clean_default.sql
             20241105_AV234501_B-PE75-Ad-HiO: fastqs/pp_fastqs_pe.sql
             230119_B001_Lib: fastqs/pp_fastqs_pe.sql
             230913_B002_B001_Lib: fastqs/pp_fastqs_pe.sql
@@ -33,7 +33,7 @@ models:
     
     samples:
         clean:
-            default: samples/clean.sql
+            # default: samples/clean_default.sql
             20241105_AV234501_B-PE75-Ad-HiO: "samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
             230119_B001_Lib: samples/230119_B001_Lib.sql
             230913_B002_B001_Lib: samples/230913_B002_B001_Lib.sql
@@ -46,7 +46,7 @@ models:
     
     sequencing:
         clean:
-            default: sequencing/230913_B002_B001_Lib.sql
+            # default: sequencing/clean_default.sql
             20241105_AV234501_B-PE75-Ad-HiO: "sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
             230119_B001_Lib: sequencing/230119_B001_Lib.sql
             230913_B002_B001_Lib: sequencing/230913_B002_B001_Lib.sql
@@ -61,7 +61,7 @@ models:
 
     vcfs:
         clean:
-            default: vcfs/clean_bactmap.sql
+            # default: vcfs/clean_default.sql
             legacy_mapping: vcfs/clean_legacy_mapping.sql
             sarek_bcftools: vcfs/clean_sarek_bcftools.sql
             sarek_deepvariant: vcfs/clean_sarek_deepvariant.sql
