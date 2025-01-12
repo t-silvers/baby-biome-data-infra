@@ -1,78 +1,78 @@
 models:
     bracken:
-        staging: models/bracken/stg_bracken.sql
-        clean: models/bracken/clean.sql
+        staging: bracken/stg_bracken.sql
+        clean: bracken/clean.sql
 
     fastqs:
-        staging: models/fastqs/stg_fastqs.sql
+        staging: fastqs/stg_fastqs.sql
         clean:
-            default: models/fastqs/pp_fastqs_pe.sql
-            20241105_AV234501_B-PE75-Ad-HiO: models/fastqs/pp_fastqs_pe.sql
-            230119_B001_Lib: models/fastqs/pp_fastqs_pe.sql
-            230913_B002_B001_Lib: models/fastqs/pp_fastqs_pe.sql
-            240704_B002_B001_Lib_AVITI_reseq: models/fastqs/pp_fastqs_pe.sql
+            default: fastqs/pp_fastqs_pe.sql
+            20241105_AV234501_B-PE75-Ad-HiO: fastqs/pp_fastqs_pe.sql
+            230119_B001_Lib: fastqs/pp_fastqs_pe.sql
+            230913_B002_B001_Lib: fastqs/pp_fastqs_pe.sql
+            240704_B002_B001_Lib_AVITI_reseq: fastqs/pp_fastqs_pe.sql
 
     # Manual caching to assist smk/nxf
     identification_cache:
-        create_db: models/pipeline_caching/identification/create.sql
-        insert_db: models/pipeline_caching/identification/insert.sql
+        create_db: pipeline_caching/identification/create.sql
+        insert_db: pipeline_caching/identification/insert.sql
 
     # Manual caching to assist smk/nxf
     mapping_cache:
-        create_db: models/pipeline_caching/mapping/create.sql
-        insert_db: models/pipeline_caching/mapping/insert.sql
+        create_db: pipeline_caching/mapping/create.sql
+        insert_db: pipeline_caching/mapping/insert.sql
 
     nfcore_inputs:
-        bactmap: models/nfcore_inputs/bactmap.sql
-        sarek: models/nfcore_inputs/sarek.sql
-        taxprofiler: models/nfcore_inputs/taxprofiler.sql
+        bactmap: nfcore_inputs/bactmap.sql
+        sarek: nfcore_inputs/sarek.sql
+        taxprofiler: nfcore_inputs/taxprofiler.sql
 
     reference_genomes:
-        create_db: models/reference_genomes/create.sql
-        prepare_insert: models/reference_genomes/update_progress.sql
-        update_db: models/reference_genomes/insert.sql
+        create_db: reference_genomes/create.sql
+        prepare_insert: reference_genomes/update_progress.sql
+        update_db: reference_genomes/insert.sql
     
     sample_info:
         clean:
-            default: models/samples/clean.sql
-            20241105_AV234501_B-PE75-Ad-HiO: "models/samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
-            230119_B001_Lib: models/samples/230119_B001_Lib.sql
-            230913_B002_B001_Lib: models/samples/230913_B002_B001_Lib.sql
-            240704_B002_B001_Lib_AVITI_reseq: models/samples/230913_B002_B001_Lib.sql
+            default: samples/clean.sql
+            20241105_AV234501_B-PE75-Ad-HiO: "samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
+            230119_B001_Lib: samples/230119_B001_Lib.sql
+            230913_B002_B001_Lib: samples/230913_B002_B001_Lib.sql
+            240704_B002_B001_Lib_AVITI_reseq: samples/230913_B002_B001_Lib.sql
 
     samplesheet:
-        create_db: models/samplesheet/create.sql
-        prepare_insert: models/samplesheet/clean.sql
-        update_db: models/samplesheet/insert.sql
+        create_db: samplesheet/create.sql
+        prepare_insert: samplesheet/clean.sql
+        update_db: samplesheet/insert.sql
     
     sequencing_info:
         clean:
-            default: models/sequencing/230913_B002_B001_Lib.sql
-            20241105_AV234501_B-PE75-Ad-HiO: "models/sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
-            230119_B001_Lib: models/sequencing/230119_B001_Lib.sql
-            230913_B002_B001_Lib: models/sequencing/230913_B002_B001_Lib.sql
-            240704_B002_B001_Lib_AVITI_reseq: models/sequencing/230913_B002_B001_Lib.sql
+            default: sequencing/230913_B002_B001_Lib.sql
+            20241105_AV234501_B-PE75-Ad-HiO: "sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
+            230119_B001_Lib: sequencing/230119_B001_Lib.sql
+            230913_B002_B001_Lib: sequencing/230913_B002_B001_Lib.sql
+            240704_B002_B001_Lib_AVITI_reseq: sequencing/230913_B002_B001_Lib.sql
 
     variants:
-        create_db: models/variants/create.sql
-        insert_db: models/variants/insert.sql
+        create_db: variants/create.sql
+        insert_db: variants/insert.sql
 
     vcfs:
         clean:
-            default: models/vcfs/clean_bactmap.sql
-            legacy_mapping: models/vcfs/clean_legacy_mapping.sql
-            sarek_bcftools: models/vcfs/clean_sarek_bcftools.sql
-            sarek_deepvariant: models/vcfs/clean_sarek_deepvariant.sql
-            sarek_freebayes: models/vcfs/clean_sarek_freebayes.sql
-            sarek_haplotypecaller: models/vcfs/clean_sarek_haplotypecaller.sql
-            snippy: models/vcfs/clean_snippy.sql
+            default: vcfs/clean_bactmap.sql
+            legacy_mapping: vcfs/clean_legacy_mapping.sql
+            sarek_bcftools: vcfs/clean_sarek_bcftools.sql
+            sarek_deepvariant: vcfs/clean_sarek_deepvariant.sql
+            sarek_freebayes: vcfs/clean_sarek_freebayes.sql
+            sarek_haplotypecaller: vcfs/clean_sarek_haplotypecaller.sql
+            snippy: vcfs/clean_snippy.sql
 
 seeds:
     types:
-        contigs: seeds/contigs_type.csv
-        idtools: seeds/idtools_type.csv
-        maptools: seeds/maptools_type.csv
-        relationship: seeds/relationship_type.csv
-        reference_genomes: seeds/reference_genome_type.csv
-        species: seeds/species_type.csv
-        timepoint: seeds/timepoint_type.csv
+        contigs: contigs_type.csv
+        idtools: idtools_type.csv
+        maptools: maptools_type.csv
+        relationship: relationship_type.csv
+        reference_genomes: reference_genome_type.csv
+        species: species_type.csv
+        timepoint: timepoint_type.csv
