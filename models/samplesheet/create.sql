@@ -1,13 +1,13 @@
 create type relationship as enum (
-    select relationship from read_csv('{{ relationship_seed }}')
+    select relationship from read_csv('{{ relationship }}')
 );
 
 create type species as enum (
-    select species from read_csv('{{ species_seed }}')
+    select species from read_csv('{{ species }}')
 );
 
 create type timepoint as enum (
-    select timepoint from read_csv('{{ timepoint_seed }}')
+    select timepoint from read_csv('{{ timepoint }}')
 );
 
 create table samples (
