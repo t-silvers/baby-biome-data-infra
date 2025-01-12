@@ -33,7 +33,7 @@ insert or ignore into reference_genomes
 copy (
     with
         samplesheet as (
-            select * from read_csv('{{ samplesheet }}')
+            select * from read_csv('{{ sample_info }}')
         ),
 
         joined as (
@@ -70,4 +70,4 @@ copy (
               and "sample" in (select "sample" from available_reference_filtered)
         )
     select * from final
-) to '{{ output }}' (format csv);
+) to '{{ samplesheet }}' (format csv);
