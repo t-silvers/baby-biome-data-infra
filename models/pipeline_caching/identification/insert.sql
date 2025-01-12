@@ -24,5 +24,5 @@ select * from final;
 -- NOTE: List Update is not supported
 insert or replace into identification_progress
     by name
-    select unnest(tool) as tool
+    select "sample", unnest(tool) as tool
     from identification_snapshot;
