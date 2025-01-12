@@ -6,7 +6,7 @@ copy (
 
         completed_samples as (
             select "sample" from mapping_progress
-            where tool not ilike 'sarek%'
+            where tool ilike 'sarek%'
         ),
 
         sarek_samplesheet as (

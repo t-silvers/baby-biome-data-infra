@@ -6,7 +6,7 @@ copy (
 
         completed_samples as (
             select "sample" from identification_progress
-            where tool != 'taxprofiler'
+            where tool = 'taxprofiler'
         ),
 
         taxprofiler_samplesheet as (
