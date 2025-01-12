@@ -1,7 +1,7 @@
 models:
     bracken:
         staging: bracken/stg_bracken.sql
-        clean: bracken/clean.sql
+        # clean: bracken/clean.sql
 
     fastqs:
         staging: fastqs/stg_fastqs.sql
@@ -54,6 +54,7 @@ models:
 
     srst2:
         staging: srst2/stg_srst2.sql
+        samplesheet: srst2/samplesheet.sql
 
     variants:
         create_db: variants/create.sql
