@@ -6,7 +6,7 @@ copy (
 
         completed_samples as (
             select "sample" from mapping_progress
-            where 'bactmap' not in tool
+            where tool != 'bactmap'
         ),
 
         bactmap_samplesheet as (

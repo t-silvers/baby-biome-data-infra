@@ -5,8 +5,8 @@ copy (
         ),
 
         completed_samples as (
-            select "sample" from reference_genomes
-            where "reference_genome" is not null
+            select "sample" from identification_progress
+            where tool != 'taxprofiler'
         ),
 
         taxprofiler_samplesheet as (

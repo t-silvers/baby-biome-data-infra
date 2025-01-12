@@ -4,6 +4,6 @@ create type tools as enum (
 
 create table mapping_progress (
     sample uinteger,
-    tool tools[],
+    tool tools,
     primary key ("sample")
 );

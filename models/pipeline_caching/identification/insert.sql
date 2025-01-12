@@ -21,6 +21,8 @@ with
     )
 select * from final;
 
+-- NOTE: List Update is not supported
 insert or replace into identification_progress
     by name
-    select * from identification_snapshot;
+    select unnest(tool) as tool
+    from identification_snapshot;
