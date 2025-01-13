@@ -43,8 +43,8 @@ copy (
             select t1.*, t2.* exclude("sample")
             from samplesheet t1
             left join reference_genomes t2
-            where t1.sample = t2.sample
-                and t2.reference_genome is not null
+                on t1.sample = t2.sample
+               and t2.reference_genome is not null
         ),
 
         -- Filter based on support
