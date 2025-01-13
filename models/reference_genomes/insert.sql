@@ -1,3 +1,6 @@
+set preserve_insertion_order = false;
+set max_temp_directory_size = '{{ max_temp_directory_size }}';
+
 create temp table new_reference_genomes as
 with
     bracken as (
@@ -5,7 +8,10 @@ with
             , "name"
             , new_est_reads
             , fraction_total_reads
-        from read_parquet('{{ bracken_glob }}', hive_partitioning = false)
+        from read_parquet(
+            '{{ bracken_glob }}',
+            hive_partitioning = false
+        )
     ),
 
     top_species_id as (
