@@ -8,10 +8,7 @@ with
             , "name"
             , new_est_reads
             , fraction_total_reads
-        from read_parquet(
-            '{{ bracken_glob }}',
-            hive_partitioning = false
-        )
+        from read_parquet('{{ bracken_glob }}', hive_partitioning = false)
     ),
 
     top_species_id as (
