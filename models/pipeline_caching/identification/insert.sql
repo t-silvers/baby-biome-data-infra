@@ -22,7 +22,7 @@ with
 select * from final;
 
 -- NOTE: List Update is not supported
-insert or replace into identification_progress
+insert or ignore into identification_progress
     by name
     select "sample", unnest(tool) as tool
     from identification_snapshot;

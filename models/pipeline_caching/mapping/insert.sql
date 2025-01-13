@@ -22,7 +22,7 @@ with
 select * from final;
 
 -- NOTE: List Update is not supported
-insert or replace into mapping_progress
+insert or ignore into mapping_progress
     by name
     select "sample", unnest(tool) as tool
     from mapping_snapshot;

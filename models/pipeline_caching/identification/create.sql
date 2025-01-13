@@ -5,5 +5,5 @@ create type tools as enum (
 create table identification_progress (
     sample uinteger,
     tool tools,
-    primary key ("sample")
+    primary key ("sample", tool)
 );
