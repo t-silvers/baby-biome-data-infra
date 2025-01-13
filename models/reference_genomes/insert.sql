@@ -63,7 +63,10 @@ copy (
         -- Reference must be available
         available_reference_filtered as (
             select "sample" from joined
-            where reference_genome in string_split('{{ available_genomes }}', '|')
+            where list_contains(
+                string_split('{{ available_genomes }}', '|'),
+                reference_genome
+            )
         ),
 
         final as (
