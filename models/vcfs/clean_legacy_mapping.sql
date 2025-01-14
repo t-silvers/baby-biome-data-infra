@@ -4,4 +4,4 @@ copy (
         filename = true,
         hive_partitioning = false
     )
-) to '{{ output }}' (format parquet);
+) to '{{ cleaned }}' (format parquet);

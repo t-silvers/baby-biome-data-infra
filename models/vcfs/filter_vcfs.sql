@@ -2,7 +2,7 @@ copy (
     with
         cleaned_vcf as (
             select * from read_parquet(
-                '{{ input }}',
+                '{{ cleaned }}',
                 filename = true,
                 hive_partitioning = false
             )
@@ -63,4 +63,4 @@ copy (
 
         final as (select * from filtered)
     select * from final
-) to '{{ output }}' (format parquet);
+) to '{{ filtered }}' (format parquet);

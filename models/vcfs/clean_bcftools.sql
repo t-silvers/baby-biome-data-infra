@@ -66,4 +66,4 @@ copy (
 
         final as (select * from cleaned)
     select * from final
-) to '{{ output }}' (format parquet);
+) to '{{ cleaned }}' (format parquet);
