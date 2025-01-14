@@ -1,6 +1,6 @@
 copy (
     with
-        raw_vcf_pq as (
+        raw_vcf as (
             select
                 try_cast(
                     regexp_extract("filename", '/(\d+).parquet$', 1)
@@ -24,28 +24,27 @@ copy (
             )
         ),
 
-        filtered as (
-            select * exclude("filter")
-            from raw_vcf_pq
-            where quality >= cast('{{ quality }}' as float)
-                and info_DP >= cast('{{ dp }}' as float)
-                and (info_AD[1] / array_reduce(info_AD, (x, y) -> x + y)) < (1 - cast('{{ maf }}' as float))
-                and array_reduce(info_AD, (x, y) -> x + y) >= cast('{{ ad }}' as float)
-                and info_MQ >= cast('{{ mq }}' as float)
-        ),
-
         cleaned as (
             select chromosome as contig
                 , position as start_pos
                 , "sample"
                 , position + length(reference) - 1 as end_pos
                 , cast(quality as decimal(6, 1)) as qual
+                , case
+                    when list_any_value("filter") is null then ['PASS']
+                    else "filter"
+                  end as "filter"
                 , array_concat([reference], alternate) as alleles
 
                 -- info fields
                 , array_transform(info_AD, x -> cast(x as usmallint)) as info_AD
+                , [] as info_ADF
+                , [] as info_ADR
                 , cast(info_DP as usmallint) as info_DP
+                , [] as info_EPP
                 , cast(info_MQ as decimal(4, 1)) as info_MQ
+                , [] as info_MQM
+                , [] as info_SP
                 , case
                     when length(reference) > 1 then ['indel']
                     when length(alternate[1]) > 1 then ['indel']
@@ -59,7 +58,8 @@ copy (
                 -- format fields
                 , cast(format_GT as varchar) as format_GT
                 , array_transform(format_PL, x -> cast(x as float)) as format_PL
-            from filtered
+                , [] as format_SP
+            from raw_vcf
         ),
         
         final as (select * from cleaned)

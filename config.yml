@@ -61,14 +61,15 @@ models:
         insert_db: variants/insert.sql
 
     vcfs:
+        filter: vcfs/filter_vcfs.sql
         clean:
             # default: vcfs/clean_default.sql
+            bcftools: vcfs/clean_bcftools.sql
+            freebayes: vcfs/clean_freebayes.sql
+            haplotypecaller: vcfs/clean_haplotypecaller.sql
+            # TODO: 
             legacy_mapping: vcfs/clean_legacy_mapping.sql
-            sarek_bcftools: vcfs/clean_sarek_bcftools.sql
-            sarek_deepvariant: vcfs/clean_sarek_deepvariant.sql
-            sarek_freebayes: vcfs/clean_sarek_freebayes.sql
-            sarek_haplotypecaller: vcfs/clean_sarek_haplotypecaller.sql
-            snippy: vcfs/clean_snippy.sql
+        manifest: vcfs/manifest.sql
 
 seeds:
     types:
