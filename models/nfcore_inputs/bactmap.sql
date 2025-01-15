@@ -2,6 +2,8 @@ copy (
     with
         samplesheet as (
             select * from read_csv('{{ input }}')
+            -- TODO: Should these be retained?
+            where id like 'B%'
         ),
 
         completed_samples as (
