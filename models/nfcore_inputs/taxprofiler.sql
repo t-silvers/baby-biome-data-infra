@@ -8,7 +8,7 @@ copy (
                 , fastq_1
                 , fastq_2
             from sequencing_records
-        ),
+        )
 
     select * from taxprofiler_samplesheet
 ) to '{{ samplesheet }}' (format csv);
