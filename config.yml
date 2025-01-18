@@ -1,75 +1,75 @@
 models:
-    bracken:
-        staging: bracken/stg_bracken.sql
-        # clean: bracken/clean.sql
+    # bracken:
+    #     staging: bracken/stg_bracken.sql
+    #     # clean: bracken/clean.sql
 
     fastqs:
         stage: fastqs/stg_fastqs.sql
         transform: fastqs/tform_fastqs.sql
         load: fastqs/load_fastqs.sql
 
-    # Manual caching to assist smk/nxf
-    pipeline_metadata:
-        create_db: pipeline_metadata/create.sql
+    # # Manual caching to assist smk/nxf
+    # pipeline_metadata:
+    #     create_db: pipeline_metadata/create.sql
 
-    # Manual caching to assist smk/nxf
-    identification_cache:
-        create_db: pipeline_caching/identification/create.sql
-        insert_db: pipeline_caching/identification/insert.sql
+    # # Manual caching to assist smk/nxf
+    # identification_cache:
+    #     create_db: pipeline_caching/identification/create.sql
+    #     insert_db: pipeline_caching/identification/insert.sql
 
-    # Manual caching to assist smk/nxf
-    mapping_cache:
-        create_db: pipeline_caching/mapping/create.sql
-        insert_db: pipeline_caching/mapping/insert.sql
+    # # Manual caching to assist smk/nxf
+    # mapping_cache:
+    #     create_db: pipeline_caching/mapping/create.sql
+    #     insert_db: pipeline_caching/mapping/insert.sql
 
-    nfcore_inputs:
-        bactmap: nfcore_inputs/bactmap.sql
-        sarek: nfcore_inputs/sarek.sql
-        taxprofiler: nfcore_inputs/taxprofiler.sql
+    # nfcore_inputs:
+    #     bactmap: nfcore_inputs/bactmap.sql
+    #     sarek: nfcore_inputs/sarek.sql
+    #     taxprofiler: nfcore_inputs/taxprofiler.sql
 
-    reference_genomes:
-        create_db: reference_genomes/create.sql
-        update_db: reference_genomes/insert.sql
+    # reference_genomes:
+    #     create_db: reference_genomes/create.sql
+    #     update_db: reference_genomes/insert.sql
     
-    samples:
-        clean:
-            # default: samples/clean_default.sql
-            20241105_AV234501_B-PE75-Ad-HiO: "samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
-            230119_B001_Lib: samples/230119_B001_Lib.sql
-            230913_B002_B001_Lib: samples/230913_B002_B001_Lib.sql
-            240704_B002_B001_Lib_AVITI_reseq: samples/230913_B002_B001_Lib.sql
+    # samples:
+    #     clean:
+    #         # default: samples/clean_default.sql
+    #         20241105_AV234501_B-PE75-Ad-HiO: "samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
+    #         230119_B001_Lib: samples/230119_B001_Lib.sql
+    #         230913_B002_B001_Lib: samples/230913_B002_B001_Lib.sql
+    #         240704_B002_B001_Lib_AVITI_reseq: samples/230913_B002_B001_Lib.sql
 
-    samplesheet:
-        create_db: samplesheet/create.sql
-        update_db: samplesheet/insert.sql
-        clean: samplesheet/clean.sql
+    # samplesheet:
+    #     create_db: samplesheet/create.sql
+    #     update_db: samplesheet/insert.sql
+    #     clean: samplesheet/clean.sql
     
-    sequencing:
-        clean:
-            # default: sequencing/clean_default.sql
-            20241105_AV234501_B-PE75-Ad-HiO: "sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
-            230119_B001_Lib: sequencing/230119_B001_Lib.sql
-            230913_B002_B001_Lib: sequencing/230913_B002_B001_Lib.sql
-            240704_B002_B001_Lib_AVITI_reseq: sequencing/230913_B002_B001_Lib.sql
+    # sequencing:
+    #     clean:
+    #         # default: sequencing/clean_default.sql
+    #         20241105_AV234501_B-PE75-Ad-HiO: "sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
+    #         230119_B001_Lib: sequencing/230119_B001_Lib.sql
+    #         230913_B002_B001_Lib: sequencing/230913_B002_B001_Lib.sql
+    #         240704_B002_B001_Lib_AVITI_reseq: sequencing/230913_B002_B001_Lib.sql
 
-    srst2:
-        staging: srst2/stg_srst2.sql
-        samplesheet: srst2/samplesheet.sql
+    # srst2:
+    #     staging: srst2/stg_srst2.sql
+    #     samplesheet: srst2/samplesheet.sql
 
-    variants:
-        create_db: variants/create.sql
-        insert_db: variants/insert.sql
+    # variants:
+    #     create_db: variants/create.sql
+    #     insert_db: variants/insert.sql
 
-    vcfs:
-        filter: vcfs/filter_vcfs.sql
-        clean:
-            # default: vcfs/clean_default.sql
-            bcftools: vcfs/clean_bcftools.sql
-            freebayes: vcfs/clean_freebayes.sql
-            haplotypecaller: vcfs/clean_haplotypecaller.sql
-            # TODO: 
-            legacy_mapping: vcfs/clean_legacy_mapping.sql
-        manifest: vcfs/manifest.sql
+    # vcfs:
+    #     filter: vcfs/filter_vcfs.sql
+    #     clean:
+    #         # default: vcfs/clean_default.sql
+    #         bcftools: vcfs/clean_bcftools.sql
+    #         freebayes: vcfs/clean_freebayes.sql
+    #         haplotypecaller: vcfs/clean_haplotypecaller.sql
+    #         # TODO: 
+    #         legacy_mapping: vcfs/clean_legacy_mapping.sql
+    #     manifest: vcfs/manifest.sql
 
 seeds:
     types:
