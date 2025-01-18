@@ -1,31 +1,14 @@
 copy (
     with
-        samplesheet as (
-            select * from read_csv('{{ input }}')
-            -- TODO: Should these be retained?
-            where id like 'B%'
-        ),
-
-        completed_samples as (
-            select "sample" from identification_progress
-            where tool = 'taxprofiler'
-        ),
-
         taxprofiler_samplesheet as (
             select 
                 "sample"
-                , "sample" as run_accession
+                , seqrun || '_' || "sample" as run_accession
                 , '{{ instrument_platform }}' as instrument_platform
                 , fastq_1
                 , fastq_2
-            from samplesheet
+            from sequencing_records
         ),
 
-        final as (
-            select * from taxprofiler_samplesheet
-            where "sample" not in (
-                select "sample" from completed_samples
-            )
-        )
-    select * from final
-) to '{{ output }}' (format csv);
+    select * from taxprofiler_samplesheet
+) to '{{ samplesheet }}' (format csv);
