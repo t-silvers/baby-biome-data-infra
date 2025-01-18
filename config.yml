@@ -22,10 +22,10 @@ models:
     #     create_db: pipeline_caching/mapping/create.sql
     #     insert_db: pipeline_caching/mapping/insert.sql
 
-    # nfcore_inputs:
-    #     bactmap: nfcore_inputs/bactmap.sql
-    #     sarek: nfcore_inputs/sarek.sql
-    #     taxprofiler: nfcore_inputs/taxprofiler.sql
+    nfcore_inputs:
+        bactmap: nfcore_inputs/bactmap.sql
+        sarek: nfcore_inputs/sarek.sql
+        taxprofiler: nfcore_inputs/taxprofiler.sql
 
     # reference_genomes:
     #     create_db: reference_genomes/create.sql
