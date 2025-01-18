@@ -3,7 +3,7 @@ create table if not exists sequencing_records (
     seqrun varchar,
     fastq_1 varchar[],
     fastq_2 varchar[],
-    primary key (fastq_1, fastq_2)
+    primary key (sample)
 );
 
 create sequence if not exists "sample";
