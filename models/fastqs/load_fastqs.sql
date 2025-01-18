@@ -1,8 +1,8 @@
 create table if not exists sequencing_records (
     sample uinteger,
     seqrun varchar,
-    fastq_1 varchar[],
-    fastq_2 varchar[],
+    fastq_1 varchar,
+    fastq_2 varchar,
     primary key (sample)
 );
 
