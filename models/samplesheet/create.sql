@@ -1,16 +1,16 @@
-create type relationship as enum (
+create type if not exists relationship as enum (
     select relationship from read_csv('{{ relationship }}')
 );
 
-create type species as enum (
+create type if not exists species as enum (
     select species from read_csv('{{ species }}')
 );
 
-create type timepoint as enum (
+create type if not exists timepoint as enum (
     select timepoint from read_csv('{{ timepoint }}')
 );
 
-create table samples (
+create table if not exists samples (
     sample uinteger,
     library varchar,
     id varchar,
@@ -32,4 +32,4 @@ create table samples (
     primary key (library, id)
 );
 
-create sequence "sample";
+create sequence if not exists "sample";

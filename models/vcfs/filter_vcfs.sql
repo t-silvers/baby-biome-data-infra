@@ -14,6 +14,7 @@ copy (
             where
                 'PASS' = any("filter")
                 and qual >= cast('{{ quality }}' as float)
+                -- Filters to only ALT calls passing a MAF of .95
                 and (info_AD[1] / array_reduce(info_AD, (x, y) -> x + y)) < (1 - cast('{{ maf }}' as float))
                 and array_reduce(info_AD, (x, y) -> x + y) >= cast('{{ ad }}' as float)
                 and (

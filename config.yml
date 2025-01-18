@@ -4,13 +4,13 @@ models:
         # clean: bracken/clean.sql
 
     fastqs:
-        staging: fastqs/stg_fastqs.sql
-        clean:
-            # default: fastqs/clean_default.sql
-            20241105_AV234501_B-PE75-Ad-HiO: fastqs/pp_fastqs_pe.sql
-            230119_B001_Lib: fastqs/pp_fastqs_pe.sql
-            230913_B002_B001_Lib: fastqs/pp_fastqs_pe.sql
-            240704_B002_B001_Lib_AVITI_reseq: fastqs/pp_fastqs_pe.sql
+        stage: fastqs/stg_fastqs.sql
+        transform: fastqs/tform_fastqs.sql
+        load: fastqs/load_fastqs.sql
+
+    # Manual caching to assist smk/nxf
+    pipeline_metadata:
+        create_db: pipeline_metadata/create.sql
 
     # Manual caching to assist smk/nxf
     identification_cache:

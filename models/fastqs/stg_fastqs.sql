@@ -1,1 +1,3 @@
-copy (select * from glob('{{ glob }}')) to '{{ output }}' (format csv);
+copy (
+    select * from glob('{{ glob }}')
+) to '{{ staged }}' (format csv);

@@ -1,7 +1,7 @@
 copy (
     with
         fastqs_glob as (
-            select * from read_csv('{{ input }}')
+            select * from read_csv('{{ staged }}')
         ),
 
         parsed_filename as (
@@ -13,7 +13,7 @@ copy (
                     , regexp_extract(
                         "file",
                         '{{ pat }}',
-                        ['library', 'id', 'family', 'read']
+                        ['seqrun', 'id', 'family', 'read']
                     ) as extracted
                 from fastqs_glob
             )
@@ -23,7 +23,7 @@ copy (
             pivot parsed_filename
             on "read" 
             using first("file") 
-            group by library, family, id
+            group by seqrun, family, id
         ),
 
         final as (
@@ -32,5 +32,5 @@ copy (
             from pivot_on_reads
         )
 
-    select id, columns('fastq_[1,2]') from final
-) to '{{ output }}' (format csv);
+    select columns('fastq_[1,2]') from final
+) to '{{ transformed }}' (format csv);
