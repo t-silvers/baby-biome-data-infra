@@ -21,11 +21,15 @@ copy (
 
         cleaned as (
             select
-                "SampleName (optional)" as sample_name
+                -- NOTE: SeqCore paths always (?) use '-' for sample names
+                regexp_replace("SampleName (optional)", '_', '-') as sample_name
+                -- NOTE: Use '_' in isolate_ids
                 , case
                     when sample_name ilike 'control%' then 'control'
                     when starts_with(sample_name, 'B') then regexp_replace(sample_name, '-', '_')
-                    else sample_name
+                    when starts_with(sample_name, 'P') then regexp_replace(sample_name, '-', '_')
+                    when starts_with(sample_name, 'plate') then sample_name
+                    else null
                 end as isolate_id
                 , cast(
                     regexp_extract(

@@ -1,22 +1,25 @@
 attach '/raven/ptmp/thosi/baby-biome/resources/sequencing.duckdb' as fastqs_db;
 
 
+select * 
+from fastqs_db.sequencing_records t1, sequencing_info t2
+where t1.fastq_1 like t2.
+;
+
+
+create temp table biospecimen_info as
+select * from read_csv('/raven/ptmp/thosi/baby-biome/resources/seqrun=*/biospecimen.csv', hive_partitioning = true);
+
+create temp table sequencing_info as
+select * from read_csv('/raven/ptmp/thosi/baby-biome/resources/seqrun=*/sequencing.csv', hive_partitioning = true);
+
+
+-- Target: Table with fields:
+--          sample, taxon_plate, donor_family, relationship, donor_id, timepoint, isolate_id, seqrun, fastq_1, fastq_2
 
 
 copy (
     with
-        fastqs as (
-            select * from read_csv('{{ fastqs_glob }}', hive_partitioning = true)
-        ),
-
-        samples as (
-            select * from read_csv('{{ samples_glob }}', hive_partitioning = true)
-        ),
-
-        sequencing as (
-            select * from read_csv('{{ sequencing_glob }}', hive_partitioning = true)
-        ),
-
         junction_table as (
             select distinct on(id, library) id, library
             from
