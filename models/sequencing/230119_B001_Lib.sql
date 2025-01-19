@@ -1,6 +1,6 @@
 copy (
     with
-        raw_sequencing as (
+        raw_seq_info as (
             select * from read_csv(
                 '{{ input }}',
                 auto_detect = false,
