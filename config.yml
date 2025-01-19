@@ -1,6 +1,6 @@
 models:
     bracken:
-        stage: bracken/stg_bracken.sql
+        transform: bracken/stg_bracken.sql
         # clean: bracken/clean.sql
 
     fastqs:
