@@ -10,24 +10,19 @@ copy (
         ),
 
         cleaned as (
-            select ID as id
-                , Family as family
-                , Family || '_' || "Subject" as donor
+            select
+                'Escherichia_coli' as taxon_plate
+                , Family as donor_family
                 , "Subject" as relationship
                 , Timepoint as timepoint
-                , 'Escherichia_coli' as species
+                , Family || '_' || "Subject" as donor_id
+                , ID as isolate_id
             from raw_sample_info
         ),
 
         final as (
-            select id
-                , family
-                , donor
-                , relationship
-                , timepoint
-                , species
-            from  cleaned
-            where id is not null
+            select * from cleaned
+            where isolate_id is not null
         )
 
     select * from final

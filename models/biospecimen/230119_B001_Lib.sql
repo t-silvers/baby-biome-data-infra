@@ -17,44 +17,51 @@ copy (
             )
         ),
 
-        cleaned_sheet1 as (
-            select "gDNA from 96-Well" as id
-                , Field2 as species
+        sample_info_sheet1 as (
+            select "gDNA from 96-Well" as isolate_id
+                , Field2 as taxon_plate
                 , regexp_extract(Field3, '^(\D+)[- ]', 1) as relationship
                 , regexp_extract(Field3, '[- ](\w+)$', 1) as timepoint
             from raw_sample_info_sheet1
         ),
 
-        cleaned_sheet2 as (
-            select Field1 as id
+        sample_info_sheet2 as (
+            select Field1 as isolate_id
                 , Field2 as gDNA
                 , case
                     when Field4 is null then Field3
                     else concat(Field3, ' (', Field4, ')')
-                end as species
+                end as taxon_plate
                 , Field5
                 , Field6 as relationship
                 , Field7 as timepoint
             from raw_sample_info_sheet2
         ),
 
-        cleaned_combined as (
-            select * exclude(species)
-                , regexp_replace(trim(species), ' ', '_', 'g') as species
-            from (select * from cleaned_sheet1)
+        combined as (
+            select * exclude(taxon_plate)
+                , regexp_replace(
+                    trim(taxon_plate), ' ', '_', 'g'
+                ) as taxon_plate
+            from (select * from sample_info_sheet1)
             union by name
-            select * from cleaned_sheet2
+            select * from sample_info_sheet2
+        ),
+
+        cleaned as (
+            select
+                taxon_plate
+                , regexp_extract(isolate_id, '([BP]\d+|Ctr\d+|Control\d+)_\d+', 1) as donor_family
+                , relationship
+                , timepoint
+                , donor_family || '_' || relationship as donor_id
+                , isolate_id
+            from combined
         ),
 
         final as (
-            select id
-                , regexp_extract(id, '([BP]\d+|Ctr\d+|Control\d+)_\d+', 1) as family
-                , family || '_' || relationship as donor
-                , relationship
-                , timepoint
-                , species
-            from cleaned_combined
-            where id is not null
+            select * from cleaned
+            where isolate_id is not null
         )
 
     select * from final

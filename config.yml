@@ -31,20 +31,20 @@ models:
     #     create_db: reference_genomes/create.sql
     #     update_db: reference_genomes/insert.sql
     
-    biospecimens:
-        transform: biospecimens/transform.sql
-        load: biospecimens/load.sql
+    sequencing_records:
+        transform: sequencing_records/transform.sql
+        load: sequencing_records/load.sql
     
-    samples:
+    biospecimen:
         transform:
-            20241105_AV234501_B-PE75-Ad-HiO: "samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
-            230119_B001_Lib: samples/230119_B001_Lib.sql
-            230913_B002_B001_Lib: samples/230913_B002_B001_Lib.sql
-            240704_B002_B001_Lib_AVITI_reseq: samples/230913_B002_B001_Lib.sql
+            20241105_AV234501_B-PE75-Ad-HiO: biospecimen/20241105_AV234501_B-PE75-Ad-HiO.sql
+            230119_B001_Lib: biospecimen/230119_B001_Lib.sql
+            230913_B002_B001_Lib: biospecimen/230913_B002_B001_Lib.sql
+            240704_B002_B001_Lib_AVITI_reseq: biospecimen/230913_B002_B001_Lib.sql
 
     sequencing:
         transform:
-            20241105_AV234501_B-PE75-Ad-HiO: "sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
+            20241105_AV234501_B-PE75-Ad-HiO: sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql
             230119_B001_Lib: sequencing/230119_B001_Lib.sql
             230913_B002_B001_Lib: sequencing/230913_B002_B001_Lib.sql
             240704_B002_B001_Lib_AVITI_reseq: sequencing/230913_B002_B001_Lib.sql
