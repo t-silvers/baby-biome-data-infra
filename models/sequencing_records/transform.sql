@@ -1,3 +1,8 @@
+attach '/raven/ptmp/thosi/baby-biome/resources/sequencing.duckdb' as fastqs_db;
+
+
+
+
 copy (
     with
         fastqs as (

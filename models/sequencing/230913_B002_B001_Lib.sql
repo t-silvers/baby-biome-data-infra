@@ -21,9 +21,12 @@ copy (
 
         cleaned as (
             select
-                case when "SampleName (optional)" ilike 'control%' then 'control'
-                    else "SampleName (optional)"
-                end as id
+                "SampleName (optional)" as sample_name
+                , case
+                    when sample_name ilike 'control%' then 'control'
+                    when starts_with(sample_name, 'B') then regexp_replace(sample_name, '-', '_')
+                    else sample_name
+                end as isolate_id
                 , cast(
                     regexp_extract(
                         "Library plate name",
@@ -40,10 +43,8 @@ copy (
         ),
 
         final as (
-            select * exclude(id)
-                , regexp_replace(id, '-', '_') as id
-            from cleaned
-            where id is not null
+            select * from cleaned
+            where sample_name is not null
         )
 
     select * from final
