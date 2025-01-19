@@ -1,7 +1,7 @@
 models:
-    # bracken:
-    #     staging: bracken/stg_bracken.sql
-    #     # clean: bracken/clean.sql
+    bracken:
+        stage: bracken/stg_bracken.sql
+        # clean: bracken/clean.sql
 
     fastqs:
         stage: fastqs/stg_fastqs.sql
@@ -27,13 +27,13 @@ models:
         sarek: nfcore_inputs/sarek.sql
         taxprofiler: nfcore_inputs/taxprofiler.sql
 
-    # reference_genomes:
-    #     create_db: reference_genomes/create.sql
-    #     update_db: reference_genomes/insert.sql
+    reference_genomes:
+        transform: reference_genomes/transform_bracken_ref_gens.sql
+        load: reference_genomes/load_ref_gens.sql
     
-    sequencing_records:
-        transform: sequencing_records/transform.sql
-        load: sequencing_records/load.sql
+    annot_sequencing_records:
+        transform: sequencing_records/transform_annot_seq_rec.sql
+        load: sequencing_records/load_annot_seq_rec.sql
     
     biospecimen:
         transform:
@@ -75,5 +75,5 @@ seeds:
         maptools: maptools_type.csv
         relationship: relationship_type.csv
         reference_genomes: reference_genome_type.csv
-        species: species_type.csv
+        taxon_plate: taxon_plate_type.csv
         timepoint: timepoint_type.csv

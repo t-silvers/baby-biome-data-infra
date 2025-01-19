@@ -1,6 +1,8 @@
 set preserve_insertion_order = false;
 set max_temp_directory_size = '{{ max_temp_directory_size }}';
 
+attach '{{ annot_sequencing_records }}' (read_only);
+
 create temp table new_reference_genomes as
 with
     bracken as (
@@ -29,9 +31,6 @@ with
     )
 select * from final;
 
-insert or ignore into reference_genomes
-    by name
-    select * from new_reference_genomes;
 
 copy (
     with
