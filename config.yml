@@ -31,26 +31,23 @@ models:
     #     create_db: reference_genomes/create.sql
     #     update_db: reference_genomes/insert.sql
     
-    # samples:
-    #     clean:
-    #         # default: samples/clean_default.sql
-    #         20241105_AV234501_B-PE75-Ad-HiO: "samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
-    #         230119_B001_Lib: samples/230119_B001_Lib.sql
-    #         230913_B002_B001_Lib: samples/230913_B002_B001_Lib.sql
-    #         240704_B002_B001_Lib_AVITI_reseq: samples/230913_B002_B001_Lib.sql
-
-    # samplesheet:
-    #     create_db: samplesheet/create.sql
-    #     update_db: samplesheet/insert.sql
-    #     clean: samplesheet/clean.sql
+    biospecimens:
+        transform: biospecimens/transform.sql
+        load: biospecimens/load.sql
     
-    # sequencing:
-    #     clean:
-    #         # default: sequencing/clean_default.sql
-    #         20241105_AV234501_B-PE75-Ad-HiO: "sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
-    #         230119_B001_Lib: sequencing/230119_B001_Lib.sql
-    #         230913_B002_B001_Lib: sequencing/230913_B002_B001_Lib.sql
-    #         240704_B002_B001_Lib_AVITI_reseq: sequencing/230913_B002_B001_Lib.sql
+    samples:
+        transform:
+            20241105_AV234501_B-PE75-Ad-HiO: "samples/20241105_AV234501_B-PE75-Ad-HiO.sql"
+            230119_B001_Lib: samples/230119_B001_Lib.sql
+            230913_B002_B001_Lib: samples/230913_B002_B001_Lib.sql
+            240704_B002_B001_Lib_AVITI_reseq: samples/230913_B002_B001_Lib.sql
+
+    sequencing:
+        transform:
+            20241105_AV234501_B-PE75-Ad-HiO: "sequencing/20241105_AV234501_B-PE75-Ad-HiO.sql"
+            230119_B001_Lib: sequencing/230119_B001_Lib.sql
+            230913_B002_B001_Lib: sequencing/230913_B002_B001_Lib.sql
+            240704_B002_B001_Lib_AVITI_reseq: sequencing/230913_B002_B001_Lib.sql
 
     # srst2:
     #     staging: srst2/stg_srst2.sql
