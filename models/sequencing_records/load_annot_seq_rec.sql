@@ -1,23 +1,11 @@
-create type if not exists relationship as enum (
-    select relationship from read_csv('{{ relationship }}')
-);
-
-create type if not exists taxon_plate as enum (
-    select taxon from read_csv('{{ taxon_plate }}')
-);
-
-create type if not exists timepoint as enum (
-    select timepoint from read_csv('{{ timepoint }}')
-);
-
 create table if not exists annot_sequencing_records (
     sample uinteger,
     sample_name varchar,
-    taxon_plate taxon_plate,
+    taxon_plate varchar,
     donor_family varchar,
-    relationship relationship,
+    relationship varchar,
     donor_id varchar,
-    timepoint timepoint,
+    timepoint varchar,
     isolate_id varchar,
     seqrun varchar,
     fastq_1 varchar,

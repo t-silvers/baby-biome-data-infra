@@ -6,7 +6,6 @@ create table if not exists reference_genomes (
     primary key (sample)
 );
 
-
 insert or ignore into reference_genomes
     by name
     select * from new_reference_genomes;
