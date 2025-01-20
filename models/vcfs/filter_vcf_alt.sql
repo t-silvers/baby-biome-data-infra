@@ -1,3 +1,5 @@
+set max_temp_directory_size = '300GB';
+
 copy (
     with
         filtered_vcf as (
