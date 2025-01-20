@@ -10,7 +10,7 @@ copy (
 
         filtered as (
             select * exclude("filter")
-            from cleaned_vcf
+            from staged_vcf
             where
                 'PASS' = any("filter")
 
