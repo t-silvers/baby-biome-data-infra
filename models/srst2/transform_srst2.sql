@@ -36,5 +36,6 @@ copy (
                 , maxMAF as max_maf
             from raw_srst2_results
         )
+    
     select * from final
 ) to '{{ output }}' (delimiter '\t');

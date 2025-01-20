@@ -4,4 +4,4 @@ copy (
         filename = true,
         hive_partitioning = false
     )
-) to '{{ cleaned }}' (format parquet);
+) to '{{ stg_vcf }}' (format parquet);

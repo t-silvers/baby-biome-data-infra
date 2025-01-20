@@ -1,8 +1,8 @@
 copy (
     with
-        cleaned_vcf as (
+        staged_vcf as (
             select * from read_parquet(
-                '{{ cleaned }}',
+                '{{ stg_vcf }}',
                 filename = true,
                 hive_partitioning = false
             )
@@ -13,9 +13,27 @@ copy (
             from cleaned_vcf
             where
                 'PASS' = any("filter")
+
+                -- [the QUAL field] estimates the probability that there is a 
+                -- polymorphism at the loci described by the record. In freebayes, 
+                -- this value can be understood as
+                -- 
+                --         1 - P(locus is homozygous given the data).
+                -- 
+                -- It is recommended that users use this value to filter their 
+                -- results, rather than accepting anything output by freebayes 
+                -- as ground truth.
+
+                -- In simulation, the receiver-operator characteristic (ROC) 
+                -- tends to have a very sharp inflection between Q1 and Q30, 
+                -- depending on input data characteristics, and a filter setting 
+                -- in this range should provide decent performance. Users are 
+                -- encouraged to examine their output and both variants which 
+                -- are retained and those they filter out. Most problems tend 
+                -- to occur in low-depth areas, and so users may wish to remove 
+                -- these as well, which can also be done by filtering on [DP].
                 and qual >= cast('{{ quality }}' as float)
-                -- Filters to only ALT calls passing a MAF of .95
-                and (info_AD[1] / array_reduce(info_AD, (x, y) -> x + y)) < (1 - cast('{{ maf }}' as float))
+
                 and array_reduce(info_AD, (x, y) -> x + y) >= cast('{{ ad }}' as float)
                 and (
                     list_any_value(info_ADF) is null

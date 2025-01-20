@@ -66,4 +66,4 @@ copy (
 
         final as (select * from cleaned)
     select * from final
-) to '{{ cleaned }}' (format parquet);
+) to '{{ stg_vcf }}' (format parquet);
