@@ -1,30 +1,15 @@
+attach '{{ fastqs_db }}' as fastqs_db (read_only);
+
+attach '{{ ref_genomes_db }}' as ref_genomes_db (read_only);
+
 copy (
-    with
-        samplesheet as (
-            select * from read_csv('{{ input }}')
-            -- TODO: Should these be retained?
-            where id like 'B%'
-        ),
-
-        completed_samples as (
-            select "sample" from mapping_progress
-            where tool = 'bactmap'
-        ),
-
-        bactmap_samplesheet as (
-            select 
-                "sample"
-                , fastq_1
-                , fastq_2
-            from samplesheet
-            where reference_genome = '{{ reference_genome }}'
-        ),
-
-        final as (
-            select * from bactmap_samplesheet
-            where "sample" not in (
-                select "sample" from completed_samples
-            )
-        )
-    select * from final
+    select
+        "sample"
+        , fastq_1
+        , fastq_2
+    from fastqs_db.sequencing_records
+    where "sample" in (
+        select "sample" from ref_genomes_db.reference_genomes
+        where reference_genome = '{{ reference_genome }}'
+    )
 ) to '{{ output }}' (format csv);
